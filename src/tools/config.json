@@ -3,6 +3,23 @@
         "active": 1,
         "name": "master",
         "server": "labs.aiddata.org",
+        "active_adm_suffix": "gadm28",
+        "release_iso3": {
+            "AfghanistanAIMS": "AFG",
+            "ColombiaAIMS": "COL",
+            "DRC-AIMS": "COD",
+            "HondurasAIMS": "HND",
+            "IraqAIMS": "IRQ",
+            "NepalAIMS": "NPL",
+            "NigeriaAIMS": "NGA",
+            "SenegalAIMS": "SEN",
+            "TimorLesteAIMS": "TLS",
+            "UgandaAIMS": "UGA",
+            "WorldBank": "global"
+        },
+        "other_iso3": [
+            "LBR"
+        ],
         "release_gadm": {
             "AfghanistanAIMS": "AFG",
             "ColombiaAIMS": "COL",
@@ -144,7 +161,8 @@
         "active": 1,
         "name": "develop",
         "server": "devlabs.aiddata.org",
-        "release_gadm": {
+        "active_adm_suffix": "gadm28",
+        "release_iso3": {
             "AfghanistanAIMS": "AFG",
             "ColombiaAIMS": "COL",
             "DRC-AIMS": "COD",
@@ -154,9 +172,10 @@
             "NigeriaAIMS": "NGA",
             "SenegalAIMS": "SEN",
             "TimorLesteAIMS": "TLS",
-            "UgandaAIMS": "UGA"
+            "UgandaAIMS": "UGA",
+            "WorldBank": "global"
         },
-        "other_gadm": [
+        "other_iso3": [
             "LBR"
         ],
         "versions": {
