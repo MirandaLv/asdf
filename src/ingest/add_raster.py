@@ -328,26 +328,35 @@ def run(path=None, client=None, version=None, config=None,
         doc["extras"]["tags"].append("raster")
 
 
-    def is_numeric(val):
-        return isinstance(val, int) or isinstance(val, float)
-
     if "categorical" in doc["options"]["extract_types"]:
         if not "category_map" in doc["extras"]:
             quit("'categorical' included as extract type but no 'category_map' dict provided in 'extras'.")
         elif not isinstance(doc["extras"]["category_map"], dict):
             quit("The 'category_map' field must be provided as a dict. Invalid type ({0}) given.".format(
                 type(doc["extras"]["category_map"])))
-        else: 
+        else:
             # make sure category names and values are in proper key:val format
             # and types
-            # {"field_name": pixel_value}
-            valid_cat_keys = all([isinstance(i, str) for i in doc["extras"]["category_map"].values()])
-            valid_cat_vals = all([isinstance(val, (int, float)) for i in doc["extras"]["category_map"].keys()])
+            # {pixel_value: "field_name"}
+            # pixel value may be int, float
+            # field name may be str, int, float (but only using string for ingest rasters)
+            cat_map =  doc["extras"]["category_map"]
+            invalid_cat_keys = [i for i in cat_map.keys()
+                                if not isinstance(i, (int, float))]
+            invalid_cat_vals = [i for i in cat_map.values()
+                                if not isinstance(i, str)]
 
             # make sure keys are str
-            #
+            if invalid_cat_keys:
+                print "Invalid `category_map` keys: ({0})".format(invalid_cat_keys)
+
             # make sure vals or int/float
-            #
+            if invalid_cat_vals:
+                print "Invalid `category_map` values: ({0})".format(invalid_cat_vals)
+
+            if invalid_cat_keys or invalid_cat_vals:
+                raise Exception("Invalid `category_map` provided.")
+
 
     # -------------------------------------
 
